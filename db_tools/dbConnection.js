@@ -6,6 +6,7 @@ const environment = process.env.NODE_ENV || 'development'
 const uri = config[environment].mongoConnect;
 
 const seedAdmin = require('./seedAdmin')
+const seedTestUser = require('./seedTestUser')
 
 module.exports = async ()=>{
   try {
@@ -21,6 +22,7 @@ module.exports = async ()=>{
     //reset and insert admin script
     await database.collection('users').remove()
     await database.collection('users').insert(seedAdmin)
+    await database.collection('users').insert(seedTestUser)
 
   } finally {
     // Ensures that the client will close when you finish/error
