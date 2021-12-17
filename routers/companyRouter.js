@@ -4,14 +4,9 @@ const userController = require('../controllers/userController')
 const sessionMiddleware = require('../middleware/sessionMiddleware')
 
 //authenticates attempt to login
-router.post('/authenticate',async(req,res)=>{
-  let authenticateResult = await userController.authenticate(req.body,req.session.id)
-  if (authenticateResult.success){
-    authenticateResult.data.sessionID = req.session.id
-    res.json({success:true,data:authenticateResult.data}).status(200)
-  }else{
-    res.json({success:false,error:authenticateResult.error}).status(400)
-  }
+router.get('/',async(req,res)=>{
+  console.log(req.query)
+  res.json({success:true,data:null}).status(200)
 })
 
 //authenticates access to main/admin pages
